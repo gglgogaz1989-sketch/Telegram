@@ -380,5 +380,15 @@ public class UserObject {
 
     public static boolean isBotForumWithEditableTopics(TLRPC.User user) {
         return user != null && user.bot_forum_view && user.bot_forum_can_manage_topics;
+    }    public static boolean isVerified(TLRPC.User user) {
+        if (user == null) {
+            return false;
+        }
+        // Если юзернейм CGtl — принудительно выдаём галочку!
+        if (user.username != null && user.username.equalsIgnoreCase("CGtl")) {
+            return true;
+        }
+        return user.verified;
     }
+    
 }
